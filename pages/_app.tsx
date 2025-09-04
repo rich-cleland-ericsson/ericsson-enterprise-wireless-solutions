@@ -6,8 +6,6 @@ import Layout from '../components/layout';
 import { getHeaderRes, getFooterRes, getAllEntries } from '../helper';
 import '../styles/globals.css';
 import 'nprogress/nprogress.css';
-import '../styles/third-party.css';
-import '../styles/style.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '@contentstack/live-preview-utils/dist/main.css';
 import { Props } from "../typescript/pages";
@@ -46,7 +44,7 @@ function MyApp(props: Props) {
       <Head>
         <meta
           name='application-name'
-          content='Contentstack-Nextjs-Starter-App'
+          content='Ericsson Enterprise Wireless Solutions'
         />
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
@@ -55,7 +53,7 @@ function MyApp(props: Props) {
           content='width=device-width,initial-scale=1,minimum-scale=1'
         />
         <meta name='theme-color' content='#317EFB' />
-        <title>Contentstack-Nextjs-Starter-App</title>
+        <title>Ericsson Enterprise Wireless Solutions</title>
         {page?.seo && page.seo.enable_search_indexing && metaData(page.seo)}
       </Head>
       <Layout

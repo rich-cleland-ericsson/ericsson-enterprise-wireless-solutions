@@ -6,9 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Props, Context } from "../typescript/pages";
 
 export default function Home(props: Props) {
-
   const { page, entryUrl } = props;
-
   const [getEntry, setEntry] = useState(page);
 
   async function fetchData() {
@@ -33,7 +31,10 @@ export default function Home(props: Props) {
       locale={getEntry.locale}
     />
   ) : (
-    <Skeleton count={3} height={300} />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 className="text-2xl font-bold text-white mb-4 bg-green-900">No Content Found</h1>
+      <p className="text-gray-600">This page doesn&apos;t have any content components yet.</p>
+    </div>
   );
 }
 
