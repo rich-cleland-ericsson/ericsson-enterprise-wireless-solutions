@@ -8,7 +8,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@contentstack/live-preview-utils": "^1.4.0",
@@ -32,7 +34,10 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.3.3"
   }
