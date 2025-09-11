@@ -3,7 +3,7 @@ import { onEntryChange } from '../contentstack-sdk';
 import RenderComponents from '../components/render-components';
 import { getPageRes } from '../helper';
 import Skeleton from 'react-loading-skeleton';
-import { Props } from "../typescript/pages";
+import { Props } from '../typescript/pages';
 
 export default function Page(props: Props) {
   const { page, entryUrl } = props;
@@ -27,30 +27,35 @@ export default function Page(props: Props) {
   return getEntry.modular_blocks ? (
     <RenderComponents
       pageComponents={getEntry.modular_blocks}
-      contentTypeUid='page'
+      contentTypeUid="page"
       entryUid={getEntry.uid}
       locale={getEntry.locale}
     />
   ) : (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4 bg-red-500">No Content Found</h1>
-      <p className="text-gray-600">This page doesn&apos;t have any content components yet.</p>
+      <h1 className="text-2xl font-bold text-gray-900 mb-4 bg-red-500">
+        No Content Found
+      </h1>
+      <p className="text-gray-600">
+        This page doesn&apos;t have any content components yet.
+      </p>
     </div>
   );
 }
 
-export async function getServerSideProps({params}: any) {
+export async function getServerSideProps({ params }: any) {
   try {
-      const entryUrl = params.page.includes('/') ? params.page:`/${params.page}`
-      const entryRes = await getPageRes(entryUrl);
-      if (!entryRes) throw new Error('404');
-      return {
-        props: {
-          entryUrl: entryUrl,
-          page: entryRes,
-        },
-      };
-
+    const entryUrl = params.page.includes('/')
+      ? params.page
+      : `/${params.page}`;
+    const entryRes = await getPageRes(entryUrl);
+    if (!entryRes) throw new Error('404');
+    return {
+      props: {
+        entryUrl: entryUrl,
+        page: entryRes,
+      },
+    };
   } catch (error) {
     return { notFound: true };
   }

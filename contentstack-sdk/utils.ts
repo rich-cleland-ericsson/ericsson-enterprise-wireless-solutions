@@ -1,5 +1,5 @@
-import { Config, Region, LivePreview, Stack } from "contentstack";
-import getConfig from "next/config";
+import { Config, Region, LivePreview, Stack } from 'contentstack';
+import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 const envConfig = process.env.CONTENTSTACK_API_KEY
   ? process.env
@@ -35,11 +35,11 @@ export const isLpConfigValid = () => {
 };
 // set region
 const setRegion = (): Region => {
-  let region = "US" as keyof typeof Region;
-  if (!!CONTENTSTACK_REGION && CONTENTSTACK_REGION !== "us") {
+  let region = 'US' as keyof typeof Region;
+  if (!!CONTENTSTACK_REGION && CONTENTSTACK_REGION !== 'us') {
     region = CONTENTSTACK_REGION.toLocaleUpperCase().replace(
-      "-",
-      "_"
+      '-',
+      '_'
     ) as keyof typeof Region;
   }
   return Region[region];
@@ -47,43 +47,45 @@ const setRegion = (): Region => {
 // set LivePreview config
 const setLivePreviewConfig = (): LivePreview => {
   if (!isLpConfigValid())
-    throw new Error("Your LP config is set to true. Please make you have set all required LP config in .env");
+    throw new Error(
+      'Your LP config is set to true. Please make you have set all required LP config in .env'
+    );
   return {
     preview_token: CONTENTSTACK_PREVIEW_TOKEN as string,
-    enable: CONTENTSTACK_LIVE_PREVIEW === "true",
+    enable: CONTENTSTACK_LIVE_PREVIEW === 'true',
     host: CONTENTSTACK_PREVIEW_HOST as string,
   } as LivePreview;
 };
 // contentstack sdk initialization
 export const initializeContentStackSdk = (): Stack => {
   if (!isBasicConfigValid())
-    throw new Error("Please set you .env file before running starter app");
+    throw new Error('Please set you .env file before running starter app');
   const stackConfig: Config = {
     api_key: CONTENTSTACK_API_KEY as string,
     delivery_token: CONTENTSTACK_DELIVERY_TOKEN as string,
     environment: CONTENTSTACK_ENVIRONMENT as string,
     region: setRegion(),
-    branch: CONTENTSTACK_BRANCH || "main",
+    branch: CONTENTSTACK_BRANCH || 'main',
   };
-  if (CONTENTSTACK_LIVE_PREVIEW === "true") {
+  if (CONTENTSTACK_LIVE_PREVIEW === 'true') {
     stackConfig.live_preview = setLivePreviewConfig();
   }
   return Stack(stackConfig);
 };
 // api host url
 export const customHostUrl = (baseUrl: string): string => {
-  return baseUrl.replace("api", "cdn");
+  return baseUrl.replace('api', 'cdn');
 };
 // generate prod api urls
 export const generateUrlBasedOnRegion = (): string[] => {
   return Object.keys(Region).map((region) => {
-    if (region === "US") {
+    if (region === 'US') {
       return `cdn.contentstack.io`;
     }
     return `${region}-cdn.contentstack.com`;
   });
 };
 // prod url validation for custom host
-export const isValidCustomHostUrl = (url=''): boolean => {
+export const isValidCustomHostUrl = (url = ''): boolean => {
   return url ? !generateUrlBasedOnRegion().includes(url) : false;
 };

@@ -11,14 +11,14 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ 
-  header, 
-  footer, 
-  page, 
-  blogPost, 
-  blogList, 
-  entries, 
-  children 
+const Layout: React.FC<LayoutProps> = ({
+  header,
+  footer,
+  page,
+  blogPost,
+  blogList,
+  entries,
+  children,
 }) => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -29,14 +29,10 @@ const Layout: React.FC<LayoutProps> = ({
             {/* Logo */}
             <div className="flex-shrink-0">
               {header?.logo?.url && (
-                <img 
-                  src={header.logo.url} 
-                  alt="Logo"
-                  className="h-8 w-auto"
-                />
+                <img src={header.logo.url} alt="Logo" className="h-8 w-auto" />
               )}
             </div>
-            
+
             {/* Navigation */}
             <nav className="hidden md:flex space-x-8">
               {header?.navigation_menu?.map((item: any, index: number) => (
@@ -54,9 +50,7 @@ const Layout: React.FC<LayoutProps> = ({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-16">
@@ -64,32 +58,33 @@ const Layout: React.FC<LayoutProps> = ({
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               {footer?.logo?.url && (
-                <img 
-                  src={footer.logo.url} 
-                  alt="Logo" 
-                  className="h-6 w-auto"
-                />
+                <img src={footer.logo.url} alt="Logo" className="h-6 w-auto" />
               )}
             </div>
-            
+
             <div className="flex space-x-6">
-              {footer?.social?.social_links?.map((social: any, index: number) => (
-                <a
-                  key={index}
-                  href={social.link?.url || '#'}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">{social.title}</span>
-                  <i className={`fab fa-${social.title?.toLowerCase()}`}></i>
-                </a>
-              ))}
+              {footer?.social?.social_links?.map(
+                (social: any, index: number) => (
+                  <a
+                    key={index}
+                    href={social.link?.url || '#'}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="sr-only">{social.title}</span>
+                    <i className={`fab fa-${social.title?.toLowerCase()}`}></i>
+                  </a>
+                )
+              )}
             </div>
           </div>
-          
+
           <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-            <p>&copy; {new Date().getFullYear()} {footer?.copyright || 'Contentstack'}. All rights reserved.</p>
+            <p>
+              &copy; {new Date().getFullYear()}{' '}
+              {footer?.copyright || 'Contentstack'}. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>

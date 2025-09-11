@@ -8,18 +8,22 @@ interface RenderComponentsProps {
   blogPost?: boolean;
 }
 
-const RenderComponents: React.FC<RenderComponentsProps> = ({ 
-  pageComponents, 
-  contentTypeUid, 
-  entryUid, 
-  locale 
+const RenderComponents: React.FC<RenderComponentsProps> = ({
+  pageComponents,
+  contentTypeUid,
+  entryUid,
+  locale,
 }) => {
   if (!pageComponents || pageComponents.length === 0) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">No Content Found</h1>
-          <p className="text-gray-600">This page doesn&apos;t have any content components yet.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            No Content Found
+          </h1>
+          <p className="text-gray-600">
+            This page doesn&apos;t have any content components yet.
+          </p>
         </div>
       </div>
     );
@@ -33,7 +37,10 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
         switch (component._content_type_uid) {
           case 'hero_banner':
             return (
-              <div key={index} className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16 mb-8 rounded-lg">
+              <div
+                key={index}
+                className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16 mb-8 rounded-lg"
+              >
                 <div className="text-center">
                   <h1 className="text-4xl md:text-6xl font-bold mb-4">
                     {component.title}
@@ -52,7 +59,7 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
                 </div>
               </div>
             );
-          
+
           case 'section':
             return (
               <div key={index} className="py-8 mb-8">
@@ -66,12 +73,16 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
                 </div>
               </div>
             );
-          
+
           default:
             return (
-              <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-lg p-6 mb-6"
+              >
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {component.title || `Component: ${component._content_type_uid}`}
+                  {component.title ||
+                    `Component: ${component._content_type_uid}`}
                 </h3>
                 <div className="text-gray-600">
                   <pre className="text-sm bg-gray-50 p-4 rounded overflow-x-auto">

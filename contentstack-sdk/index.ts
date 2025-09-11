@@ -1,11 +1,11 @@
-import * as Utils from "@contentstack/utils";
-import ContentstackLivePreview from "@contentstack/live-preview-utils";
-import getConfig from "next/config";
+import * as Utils from '@contentstack/utils';
+import ContentstackLivePreview from '@contentstack/live-preview-utils';
+import getConfig from 'next/config';
 import {
   customHostUrl,
   initializeContentStackSdk,
   isValidCustomHostUrl,
-} from "./utils";
+} from './utils';
 
 type GetEntry = {
   contentTypeUid: string;
@@ -27,7 +27,7 @@ const envConfig = process.env.CONTENTSTACK_API_KEY
 
 let customHostBaseUrl = envConfig.CONTENTSTACK_API_HOST as string;
 
-customHostBaseUrl = customHostBaseUrl? customHostUrl(customHostBaseUrl): '';
+customHostBaseUrl = customHostBaseUrl ? customHostUrl(customHostBaseUrl) : '';
 
 // SDK initialization
 const Stack = initializeContentStackSdk();
@@ -41,10 +41,10 @@ if (!!customHostBaseUrl && isValidCustomHostUrl(customHostBaseUrl)) {
 ContentstackLivePreview.init({
   //@ts-ignore
   stackSdk: Stack,
-  clientUrlParams:{
+  clientUrlParams: {
     host: envConfig.CONTENTSTACK_APP_HOST,
   },
-  ssr:false,
+  ssr: false,
 })?.catch((err) => console.error(err));
 
 export const { onEntryChange } = ContentstackLivePreview;
@@ -108,7 +108,7 @@ export const getEntryByUrl = ({
     const blogQuery = Stack.ContentType(contentTypeUid).Query();
     if (referenceFieldPath) blogQuery.includeReference(referenceFieldPath);
     blogQuery.toJSON();
-    const data = blogQuery.where("url", `${entryUrl}`).find();
+    const data = blogQuery.where('url', `${entryUrl}`).find();
     data.then(
       (result) => {
         jsonRtePath &&

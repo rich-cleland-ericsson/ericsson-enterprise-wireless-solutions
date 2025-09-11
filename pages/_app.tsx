@@ -8,8 +8,7 @@ import '../styles/globals.css';
 import 'nprogress/nprogress.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '@contentstack/live-preview-utils/dist/main.css';
-import { Props } from "../typescript/pages";
-
+import { Props } from '../typescript/pages';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -43,16 +42,16 @@ function MyApp(props: Props) {
     <>
       <Head>
         <meta
-          name='application-name'
-          content='Ericsson Enterprise Wireless Solutions'
+          name="application-name"
+          content="Ericsson Enterprise Wireless Solutions"
         />
-        <meta charSet='utf-8' />
-        <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
-          name='viewport'
-          content='width=device-width,initial-scale=1,minimum-scale=1'
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1"
         />
-        <meta name='theme-color' content='#317EFB' />
+        <meta name="theme-color" content="#317EFB" />
         <title>Ericsson Enterprise Wireless Solutions</title>
         {page?.seo && page.seo.enable_search_indexing && metaData(page.seo)}
       </Head>
