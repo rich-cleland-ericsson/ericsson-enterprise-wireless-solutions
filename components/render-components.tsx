@@ -25,8 +25,9 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
     );
   }
 
+  // TODO: WE NEED TO ADD COMPONENTS TO LOAD FOR EACH SWITCH CASE
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-ericsson-dark-blue">
       {pageComponents.map((component: any, index: number) => {
         // This is a basic renderer - you would typically have specific components for each type
         switch (component._content_type_uid) {

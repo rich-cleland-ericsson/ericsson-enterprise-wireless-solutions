@@ -8,6 +8,7 @@ import { Props } from "../typescript/pages";
 export default function Page(props: Props) {
   const { page, entryUrl } = props;
   const [getEntry, setEntry] = useState(page);
+  console.log('getEntry', getEntry);
 
   async function fetchData() {
     try {
@@ -23,9 +24,9 @@ export default function Page(props: Props) {
     onEntryChange(() => fetchData());
   }, [page]);
 
-  return getEntry.page_components ? (
+  return getEntry.modular_blocks ? (
     <RenderComponents
-      pageComponents={getEntry.page_components}
+      pageComponents={getEntry.modular_blocks}
       contentTypeUid='page'
       entryUid={getEntry.uid}
       locale={getEntry.locale}

@@ -67,7 +67,7 @@ export type Props = {
 }
 
 export type Page ={
-  page_components: Component[];
+  modular_blocks: Component[];
   uid: string;
   locale: string;
   url: string;
