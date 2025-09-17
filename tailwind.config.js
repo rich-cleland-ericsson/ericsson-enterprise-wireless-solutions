@@ -4,7 +4,6 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-    
   ],
   theme: {
     extend: {
@@ -16,14 +15,14 @@ module.exports = {
         'ericsson-blue': '#1174e6',
         'ericsson-teal': '#23969a',
         'ericsson-purple': '#976cf4',
-        'ericsson-coral': '#e65d6a',  
+        'ericsson-coral': '#e65d6a',
         'ericsson-light-blue': '#d6e2f5',
         'ericsson-light-teal': '#bde0e1',
         'ericsson-light-purple': '#e0d3fc',
         'ericsson-light-coral': '#efd4d3',
         'ericsson-yellow': '#fad22d',
         'ericsson-orange': '#e66e19',
-        'ericsson-red': '#c52a32',    
+        'ericsson-red': '#c52a32',
         'ericsson-gray': {
           0: '#ffffff',
           1: '#f2f2f2',

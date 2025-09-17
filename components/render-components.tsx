@@ -73,24 +73,22 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
             return (
               <div className="bg-ericsson-teal py-20">
                 <div className="container flex flex-row items-center justify-between">
-                  <div className="text-2xl text-white">{componentData.call_to_action_text}</div>
-                  <div><Button>{componentData.cta_text}</Button></div>
+                  <div className="text-2xl text-white">
+                    {componentData.call_to_action_text}
+                  </div>
+                  <div>
+                    <Button>{componentData.cta_text}</Button>
+                  </div>
                 </div>
               </div>
             );
           case 'recent_post_blog':
-            return (
-              <div>
-                
-              </div>
-            );
+            return <div></div>;
           case 'new_fifty_fifty':
             return (
               <div className="flex flex-row items-center container">
                 <div>
-                  <img
-                    src={componentData.col_1_block[0].test_image.file.url}
-                  />
+                  <img src={componentData.col_1_block[0].test_image.file.url} />
                 </div>
                 <div>
                   <h3 className="text-2xl pb-2">
@@ -102,7 +100,12 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
                         .col_2_description
                     }
                   </div>
-                  <Button>{componentData.col_2_block[0].col_2_card_block.col_2_cta_text}</Button>
+                  <Button>
+                    {
+                      componentData.col_2_block[0].col_2_card_block
+                        .col_2_cta_text
+                    }
+                  </Button>
                 </div>
               </div>
             );
