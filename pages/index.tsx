@@ -8,6 +8,7 @@ import { Props, Context } from '../typescript/pages';
 export default function Home(props: Props) {
   const { page, entryUrl } = props;
   const [getEntry, setEntry] = useState(page);
+  console.log('INDEX RENDERED');
 
   async function fetchData() {
     try {
