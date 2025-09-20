@@ -117,7 +117,6 @@ export const getEntryByUrl = ({
             paths: jsonRtePath,
             renderOption,
           });
-        console.log('RESPONSE,' result[0]);
         resolve(result[0]);
       },
       (error) => {
