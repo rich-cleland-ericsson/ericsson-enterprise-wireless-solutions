@@ -9,6 +9,7 @@ import 'nprogress/nprogress.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '@contentstack/live-preview-utils/dist/main.css';
 import { Props } from '../typescript/pages';
+import { ericssonHilda } from '../lib/fonts';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -39,7 +40,7 @@ function MyApp(props: Props) {
   };
   const blogList: any = posts?.concat(archivePost);
   return (
-    <>
+    <div className={`${ericssonHilda.variable} font-ericsson`}>
       <Head>
         <meta
           name="application-name"
@@ -65,7 +66,7 @@ function MyApp(props: Props) {
       >
         <Component {...pageProps} />
       </Layout>
-    </>
+    </div>
   );
 }
 
@@ -74,6 +75,7 @@ MyApp.getInitialProps = async (appContext: any) => {
   const header = await getHeaderRes();
   const footer = await getFooterRes();
   const entries = await getAllEntries();
+  console.log('ENTRIES,', entries);
 
   return { ...appProps, header, footer, entries };
 };

@@ -19,14 +19,6 @@ export default function Page(props: Props) {
       console.error(error);
     }
   }
-  // THIS SHOULD LIVE IN THE CALL TO CONTENT STACK SDK, in that hook.
-  //TODO: Check if page response has references, make those calls
-  //function that looks though JSON and finds "reference",
-  //  checks length
-  //  Notes: _content_type_uid
-  //  Notes: uid
-  //  Makes API call to get contentType Entry
-
   useEffect(() => {
     onEntryChange(() => fetchData());
   }, [page]);
@@ -56,6 +48,16 @@ export async function getServerSideProps({ params }: any) {
       ? params.page
       : `/${params.page}`;
     const entryRes = await getPageRes(entryUrl);
+    // Lets add check for references here.
+   // THIS SHOULD LIVE IN THE CALL TO CONTENT STACK SDK, in that hook.
+  //TODO: Check if page response has references, make those calls
+  //function that looks though JSON and finds "reference",
+  //  checks length
+  //  Notes: _content_type_uid
+  //  Notes: uid
+  //  Makes API call to get contentType Entry
+
+   //
     if (!entryRes) throw new Error('404');
     return {
       props: {
