@@ -212,6 +212,10 @@ const mockFooter: FooterProps = {
   },
 };
 
+const mockNavigation: any = {
+  This: 'test',
+};
+
 export const getHeaderRes = async (): Promise<HeaderProps> => {
   try {
     const response = (await getEntry({
@@ -225,6 +229,20 @@ export const getHeaderRes = async (): Promise<HeaderProps> => {
   } catch (error) {
     console.warn('Header content type not found, using mock data');
     return mockHeader;
+  }
+};
+
+export const getNavRes = async (): Promise<NavProps> => {
+  try {
+    const response = (await getEntry({
+      contentTypeUid: 'navigation',
+    })) as NavProps[][];
+
+    liveEdit && addEditableTags(response[0][0], 'navigation', true);
+    return response[0][0];
+  } catch (error) {
+    console.warn('Navigation content type not found, using mock data');
+    return mockNavigation;
   }
 };
 

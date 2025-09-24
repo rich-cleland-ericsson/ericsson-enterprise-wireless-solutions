@@ -20,10 +20,12 @@ const Layout: React.FC<LayoutProps> = ({
   entries,
   children,
 }) => {
+  console.log('HEADER', header);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
+      <header className="bg-black sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -35,15 +37,17 @@ const Layout: React.FC<LayoutProps> = ({
 
             {/* Navigation */}
             <nav className="hidden md:flex space-x-8">
-              {header?.navigation_menu?.map((item: any, index: number) => (
-                <a
-                  key={index}
-                  href={item.page_reference?.[0]?.url || '#'}
-                  className="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {header?.navigation_menu?.categories.map(
+                (item: any, index: number) => (
+                  <a
+                    key={index}
+                    href={item.page_reference?.[0]?.url || '#'}
+                    className="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
             </nav>
           </div>
         </div>
@@ -53,7 +57,7 @@ const Layout: React.FC<LayoutProps> = ({
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
+      <footer className="bg-black border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
@@ -80,7 +84,7 @@ const Layout: React.FC<LayoutProps> = ({
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+          <div className="mt-8 pt-8 text-center text-sm text-gray-500">
             <p>
               &copy; {new Date().getFullYear()}{' '}
               {footer?.copyright || 'Contentstack'}. All rights reserved.

@@ -21,7 +21,7 @@ function calcPosition(position: string) {
 
 function calcStyle(style: string) {
   const setStyle = {
-    h1: 'text-4xl font-semibold',
+    h1: 'text-3xl font-semi',
     h2: 'text-2xl font-semibold',
     h3: 'text-xl font-semibold',
     h4: 'text-md font-semibold',
@@ -62,7 +62,7 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
 
   // TODO: WE NEED TO ADD COMPONENTS TO LOAD FOR EACH SWITCH CASE
   return (
-    <div className="">
+    <div className="flex flex-col">
       {pageComponents.map((component: any, index: number) => {
         const componentType = Object.keys(component)[0];
         const componentData = component[componentType];
@@ -71,17 +71,17 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
         switch (componentType) {
           case 'three_column_home_page':
             return (
-              <div className="flex flex-row container gap-3 mb-10 mt-4">
+              <div className="flex flex-row container gap-5 mb-10 mt-4">
                 {componentData.group.map((card: any) => (
                   <Card
                     key={card._metadata.uid}
-                    className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:text-white text-center p-6"
+                    className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:border-ericsson-blue hover:text-white text-center py-6 px-8"
                   >
                     <CardTitle>{card.card_title}</CardTitle>
                     <div className="mb-10 mt-8 text-xl">
                       {card.card_sub_title}
                     </div>
-                    <CardFooter>
+                    <CardFooter className="mt-auto">
                       <Button className="w-full">
                         {card.button_link.title}
                       </Button>
@@ -107,7 +107,7 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
             return <div></div>;
           case 'new_fifty_fifty':
             return (
-              <div className="flex flex-row items-center container">
+              <div className="flex flex-row items-center container my-20">
                 <div>
                   <img src={componentData.col_1_block[0].test_image.file.url} />
                 </div>

@@ -3,7 +3,12 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import Layout from '../components/layout';
-import { getHeaderRes, getFooterRes, getAllEntries } from '../helper';
+import {
+  getHeaderRes,
+  getFooterRes,
+  getNavRes,
+  getAllEntries,
+} from '../helper';
 import '../styles/globals.css';
 import 'nprogress/nprogress.css';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -16,7 +21,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp(props: Props) {
-  const { Component, pageProps, header, footer, entries } = props;
+  const { Component, pageProps, header, navigation, footer, entries } = props;
   const { page, posts, archivePost, blogPost } = pageProps;
 
   const metaData = (seo: any) => {
@@ -57,7 +62,10 @@ function MyApp(props: Props) {
         {page?.seo && page.seo.enable_search_indexing && metaData(page.seo)}
       </Head>
       <Layout
-        header={header}
+        header={{
+          ...header,
+          navigation_menu: navigation,
+        }}
         footer={footer}
         page={page}
         blogPost={blogPost}
@@ -75,8 +83,9 @@ MyApp.getInitialProps = async (appContext: any) => {
   const header = await getHeaderRes();
   const footer = await getFooterRes();
   const entries = await getAllEntries();
+  const navigation = await getNavRes();
 
-  return { ...appProps, header, footer, entries };
+  return { ...appProps, header, footer, entries, navigation };
 };
 
 export default MyApp;
