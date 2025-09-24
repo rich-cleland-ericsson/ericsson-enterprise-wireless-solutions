@@ -8,8 +8,8 @@ import { Props, Context } from '../typescript/pages';
 export default function Home(props: Props) {
   const { page, entryUrl } = props;
   const [getEntry, setEntry] = useState(page);
-  console.log('INDEX RENDERED');
 
+  console.log('GET ENTRY', getEntry);
   async function fetchData() {
     try {
       const entryRes = await getPageRes(entryUrl);
@@ -46,8 +46,6 @@ export default function Home(props: Props) {
 export async function getServerSideProps(context: Context) {
   try {
     const entryRes = await getPageRes(context.resolvedUrl);
-    console.log('ENTRY RES', entryRes);
-    console.log('CONTEXT', context.resolvedUrl);
     return {
       props: {
         entryUrl: context.resolvedUrl,

@@ -75,7 +75,6 @@ MyApp.getInitialProps = async (appContext: any) => {
   const header = await getHeaderRes();
   const footer = await getFooterRes();
   const entries = await getAllEntries();
-  console.log('ENTRIES,', entries);
 
   return { ...appProps, header, footer, entries };
 };

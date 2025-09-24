@@ -6,6 +6,7 @@ import {
   CarouselItem,
   CarouselNext,
 } from './ui/carousel';
+import { Card, CardTitle, CardDescription, CardFooter } from './ui/card';
 import { Button } from './ui/button';
 import { clsx } from 'clsx';
 
@@ -65,10 +66,25 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
       {pageComponents.map((component: any, index: number) => {
         const componentType = Object.keys(component)[0];
         const componentData = component[componentType];
-        console.log('componentData', componentData);
 
         // This is a basic renderer - you would typically have specific components for each type
         switch (componentType) {
+          case 'three_column_home_page':
+            return (
+              <div className="flex flex-row container gap-3 mb-10 mt-4">
+              {componentData.group.map(card => (
+                <Card className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:text-white text-center p-6">
+                  <CardTitle>{card.card_title}</CardTitle>
+                    <div className="mb-10 mt-8 text-xl">{card.card_sub_title}</div>
+                    <CardFooter>
+                      <Button className="w-full">
+                        {card.button_link.title}
+                      </Button>
+                    </CardFooter>
+                </Card>
+              ))}
+              </div>
+            );
           case 'call_to_action':
             return (
               <div className="bg-ericsson-teal py-20">
