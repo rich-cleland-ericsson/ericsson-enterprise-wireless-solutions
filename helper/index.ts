@@ -264,7 +264,12 @@ export const getPageRes = async (entryUrl: string): Promise<Page> => {
   const response = (await getEntryByUrl({
     contentTypeUid: 'page',
     entryUrl,
-    referenceFieldPath: ['header', 'footer', 'navigation', 'modular_blocks.recent_post_blog.reference.blog_single'],
+    referenceFieldPath: [
+      'header',
+      'footer',
+      'navigation',
+      'modular_blocks.recent_post_blog.reference.blog_single',
+    ],
     jsonRtePath: [
       'page_components.from_blog.featured_blogs.body',
       'page_components.section_with_buckets.buckets.description',

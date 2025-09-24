@@ -72,17 +72,19 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
           case 'three_column_home_page':
             return (
               <div className="flex flex-row container gap-3 mb-10 mt-4">
-              {componentData.group.map(card => (
-                <Card className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:text-white text-center p-6">
-                  <CardTitle>{card.card_title}</CardTitle>
-                    <div className="mb-10 mt-8 text-xl">{card.card_sub_title}</div>
+                {componentData.group.map((card) => (
+                  <Card className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:text-white text-center p-6">
+                    <CardTitle>{card.card_title}</CardTitle>
+                    <div className="mb-10 mt-8 text-xl">
+                      {card.card_sub_title}
+                    </div>
                     <CardFooter>
                       <Button className="w-full">
                         {card.button_link.title}
                       </Button>
                     </CardFooter>
-                </Card>
-              ))}
+                  </Card>
+                ))}
               </div>
             );
           case 'call_to_action':
