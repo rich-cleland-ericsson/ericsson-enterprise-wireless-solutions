@@ -73,7 +73,7 @@ const RenderComponents: React.FC<RenderComponentsProps> = ({
             return (
               <div className="flex flex-row container gap-3 mb-10 mt-4">
                 {componentData.group.map((card) => (
-                  <Card className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:text-white text-center p-6">
+                  <Card key={card._metadata.uid} className="w-1/3 bg-ericsson-gray-2 flex flex-col hover:bg-ericsson-blue hover:text-white text-center p-6">
                     <CardTitle>{card.card_title}</CardTitle>
                     <div className="mb-10 mt-8 text-xl">
                       {card.card_sub_title}
