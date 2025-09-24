@@ -64,6 +64,7 @@ export type Props = {
   pageProps: PageProps;
   header: HeaderProps;
   footer: FooterProps;
+  navigation: any;
 };
 
 export type Page = {
