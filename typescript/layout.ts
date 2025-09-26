@@ -67,10 +67,24 @@ export type Posts = {
   _owner: {};
 };
 
+export type NavProps = {
+  locale: string;
+  navigation_menu: {
+    categories: [List];
+    [key: string]: any;
+  };
+  uid: string;
+  _version: number;
+  [key: string]: any;
+};
+
 export type HeaderProps = {
   locale: string;
   logo: Image;
-  navigation_menu: [List];
+  navigation_menu: {
+    categories: [List];
+    [key: string]: any;
+  };
   notification_bar: Announcement;
   title: string;
   uid: string;
@@ -85,7 +99,6 @@ export type Entry = [entry: EntryData];
 type List = {
   label?: string;
   page_reference: [PageRef];
-  categories?: [];
   $: {};
   href?: string;
 };

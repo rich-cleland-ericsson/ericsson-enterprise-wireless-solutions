@@ -1,7 +1,7 @@
 import { addEditableTags } from '@contentstack/utils';
 import { Page, BlogPosts } from '../typescript/pages';
 import getConfig from 'next/config';
-import { FooterProps, HeaderProps } from '../typescript/layout';
+import { FooterProps, HeaderProps, NavProps } from '../typescript/layout';
 import { getEntry, getEntryByUrl } from '../contentstack-sdk';
 
 const { publicRuntimeConfig } = getConfig();
@@ -14,31 +14,32 @@ const liveEdit = envConfig.CONTENTSTACK_LIVE_EDIT_TAGS === 'true';
 // Mock data for missing content types
 const mockHeader: HeaderProps = {
   logo: { url: '/contentstack-readme-logo.png', title: 'Contentstack Logo' },
-  navigation_menu: [
-    {
-      label: 'Home',
-      page_reference: [
-        {
-          url: '/',
-          title: 'Home',
-          $: {
-            title: {},
+  navigation_menu: {
+    categories: [
+      {
+        page_reference: [
+          {
             url: '/',
-            copyright: '',
-            announcement_text: '',
-            label: {},
+            title: 'Home',
+            $: {
+              title: {},
+              url: '/',
+              copyright: '',
+              announcement_text: '',
+              label: {},
+            },
           },
+        ],
+        $: {
+          title: {},
+          url: '',
+          copyright: '',
+          announcement_text: '',
+          label: {},
         },
-      ],
-      $: {
-        title: {},
-        url: '',
-        copyright: '',
-        announcement_text: '',
-        label: {},
       },
-    },
-  ],
+    ],
+  },
   title: 'Contentstack Next.js Starter',
   uid: 'mock-header',
   locale: 'en-us',

@@ -9,8 +9,8 @@ import {
 
 type GetEntry = {
   contentTypeUid: string;
-  referenceFieldPath: string[] | undefined;
-  jsonRtePath: string[] | undefined;
+  referenceFieldPath?: string[] | undefined;
+  jsonRtePath?: string[] | undefined;
 };
 
 type GetEntryByUrl = {
