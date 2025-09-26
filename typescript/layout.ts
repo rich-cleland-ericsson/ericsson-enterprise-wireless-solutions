@@ -85,6 +85,7 @@ export type Entry = [entry: EntryData];
 type List = {
   label?: string;
   page_reference: [PageRef];
+  categories?: [];
   $: {};
   href?: string;
 };
