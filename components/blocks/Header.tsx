@@ -1,5 +1,5 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import {
   BookOpenIcon,
   BriefcaseIcon,
@@ -11,11 +11,13 @@ import {
   UsersIcon,
   VideoCameraIcon,
   MagnifyingGlassIcon,
+  ChevronRightIcon,
+  PhoneIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { HeaderProps } from '@/typescript/layout';
 
-// Data for each navigation section
+// Data for each navigation section (original top nav)
 const placesData = [
   { name: 'Office Locations', href: '#', icon: GlobeAltIcon },
   { name: 'Global Presence', href: '#', icon: UsersIcon },
@@ -41,167 +43,320 @@ const resourcesData = [
   { name: 'Training Materials', href: '#', icon: VideoCameraIcon },
 ];
 
-const recentPosts = [
-  {
-    id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    date: 'Mar 16, 2023',
-    datetime: '2023-03-16',
-    category: { title: 'Marketing', href: '#' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80',
-    description:
-      'Et et dolore officia quis nostrud esse aute cillum irure do esse. Eiusmod ad deserunt cupidatat est magna Lorem.',
+// Different category data for each top nav item
+const dropdownCategories = {
+  places: {
+    industries: {
+      label: 'Industries',
+      subcategories: [
+        { name: 'Public Safety', href: '#' },
+        { name: 'Retail', href: '#' },
+        { name: 'Restaurants', href: '#' },
+        { name: 'Education', href: '#' },
+        { name: 'Mass Transit', href: '#' },
+        { name: 'Financial Services', href: '#' },
+        { name: 'Construction', href: '#' },
+        { name: 'Transportation', href: '#' },
+        { name: 'Government', href: '#' },
+        { name: 'Ports', href: '#' },
+        { name: 'Manufacturing', href: '#' },
+      ],
+    },
+    useCases: {
+      label: 'Use Cases',
+      subcategories: [
+        { name: 'Emergency Response', href: '#' },
+        { name: 'Asset Tracking', href: '#' },
+        { name: 'Fleet Management', href: '#' },
+        { name: 'Security Systems', href: '#' },
+        { name: 'IoT Integration', href: '#' },
+        { name: 'Remote Monitoring', href: '#' },
+        { name: 'Data Analytics', href: '#' },
+        { name: 'Automation', href: '#' },
+      ],
+    },
   },
-  {
-    id: 2,
-    title: 'How to use search engine optimization to drive sales',
-    href: '#',
-    date: 'Mar 10, 2023',
-    datetime: '2023-03-10',
-    category: { title: 'Sales', href: '#' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80',
-    description:
-      'Optio cum necessitatibus dolor voluptatum provident commodi et.',
+  products: {
+    solutions: {
+      label: 'Solutions',
+      subcategories: [
+        { name: 'Wireless Networks', href: '#' },
+        { name: 'IoT Platforms', href: '#' },
+        { name: 'Security Solutions', href: '#' },
+        { name: 'Analytics Tools', href: '#' },
+        { name: 'Integration Services', href: '#' },
+        { name: 'Support Services', href: '#' },
+      ],
+    },
+    technologies: {
+      label: 'Technologies',
+      subcategories: [
+        { name: '5G Networks', href: '#' },
+        { name: 'WiFi 6', href: '#' },
+        { name: 'LoRaWAN', href: '#' },
+        { name: 'Bluetooth', href: '#' },
+        { name: 'Zigbee', href: '#' },
+        { name: 'Cellular IoT', href: '#' },
+      ],
+    },
   },
-];
+  people: {
+    team: {
+      label: 'Our Team',
+      subcategories: [
+        { name: 'Leadership', href: '#' },
+        { name: 'Engineering', href: '#' },
+        { name: 'Sales', href: '#' },
+        { name: 'Support', href: '#' },
+        { name: 'Marketing', href: '#' },
+        { name: 'Operations', href: '#' },
+      ],
+    },
+    careers: {
+      label: 'Careers',
+      subcategories: [
+        { name: 'Open Positions', href: '#' },
+        { name: 'Benefits', href: '#' },
+        { name: 'Culture', href: '#' },
+        { name: 'Internships', href: '#' },
+        { name: 'Remote Work', href: '#' },
+        { name: 'Diversity', href: '#' },
+      ],
+    },
+  },
+  resources: {
+    documentation: {
+      label: 'Documentation',
+      subcategories: [
+        { name: 'API Reference', href: '#' },
+        { name: 'User Guides', href: '#' },
+        { name: 'Tutorials', href: '#' },
+        { name: 'Best Practices', href: '#' },
+        { name: 'Code Examples', href: '#' },
+        { name: 'SDKs', href: '#' },
+      ],
+    },
+    support: {
+      label: 'Support',
+      subcategories: [
+        { name: 'Help Center', href: '#' },
+        { name: 'Community Forum', href: '#' },
+        { name: 'Contact Support', href: '#' },
+        { name: 'Status Page', href: '#' },
+        { name: 'Training', href: '#' },
+        { name: 'Webinars', href: '#' },
+      ],
+    },
+  },
+};
+
+// Right section content for each top nav and category combination
+const rightSectionContent = {
+  places: {
+    industries: {
+      title: 'Let us help',
+      description:
+        'Whether you have a product question or need technical support, our team is here to help you succeed.',
+      icon: PhoneIcon,
+      ctaText: 'Contact Support',
+      ctaHref: '#',
+    },
+    useCases: {
+      title: 'Explore Use Cases',
+      description:
+        'Discover how our solutions are being used across different industries and applications.',
+      icon: VideoCameraIcon,
+      ctaText: 'View Case Studies',
+      ctaHref: '#',
+    },
+  },
+  products: {
+    solutions: {
+      title: 'Explore Solutions',
+      description:
+        'Discover how our wireless solutions can transform your business operations and improve efficiency.',
+      icon: VideoCameraIcon,
+      ctaText: 'View Case Studies',
+      ctaHref: '#',
+    },
+    technologies: {
+      title: 'Learn Technologies',
+      description:
+        'Understand the technical capabilities and features of our wireless technology stack.',
+      icon: InformationCircleIcon,
+      ctaText: 'Read Documentation',
+      ctaHref: '#',
+    },
+  },
+  people: {
+    team: {
+      title: 'Meet Our Team',
+      description:
+        'Get to know the talented individuals who make our company successful.',
+      icon: UserGroupIcon,
+      ctaText: 'View Team',
+      ctaHref: '#',
+    },
+    careers: {
+      title: 'Join Our Team',
+      description:
+        'Ready to make an impact? Explore career opportunities and learn about our company culture.',
+      icon: BriefcaseIcon,
+      ctaText: 'View Careers',
+      ctaHref: '#',
+    },
+  },
+  resources: {
+    documentation: {
+      title: 'Learn More',
+      description:
+        'Access our comprehensive resources to understand how our solutions can benefit your organization.',
+      icon: BookOpenIcon,
+      ctaText: 'Browse Resources',
+      ctaHref: '#',
+    },
+    support: {
+      title: 'Get Support',
+      description:
+        'Need help? Our support team is here to assist you with any questions or issues.',
+      icon: PhoneIcon,
+      ctaText: 'Contact Support',
+      ctaHref: '#',
+    },
+  },
+};
 
 interface HeaderComponentProps {
   nav?: HeaderProps;
 }
 
 export default function Header({ nav }: HeaderComponentProps) {
-  const [activeSection, setActiveSection] = useState('places');
+  const [activeTopNav, setActiveTopNav] = useState('places');
+  const [activeCategory, setActiveCategory] = useState('industries');
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigationItems = [
+  // Original top navigation items
+  const topNavigationItems = [
     { key: 'places', label: 'Places', data: placesData },
     { key: 'products', label: 'Products', data: productsData },
     { key: 'people', label: 'People', data: peopleData },
     { key: 'resources', label: 'Resources', data: resourcesData },
   ];
 
-  const handleButtonClick = (sectionKey: string) => {
-    if (isOpen && activeSection === sectionKey) {
+  const handleTopNavClick = (navKey: string) => {
+    if (isOpen && activeTopNav === navKey) {
       // Same button clicked - close
       setIsOpen(false);
     } else {
       // Different button clicked - close first, then open with new content
       if (isOpen) {
         setIsOpen(false);
-        // Use setTimeout to allow close animation to complete before opening new content
         setTimeout(() => {
-          setActiveSection(sectionKey);
+          setActiveTopNav(navKey);
+          // Reset to first category when switching top nav
+          const categories =
+            dropdownCategories[navKey as keyof typeof dropdownCategories];
+          const firstCategoryKey = Object.keys(categories)[0];
+          setActiveCategory(firstCategoryKey);
           setIsOpen(true);
-        }, 150); // Half of the close animation duration
+        }, 150);
       } else {
         // Not open - just open with new content
-        setActiveSection(sectionKey);
+        setActiveTopNav(navKey);
+        // Reset to first category when opening
+        const categories =
+          dropdownCategories[navKey as keyof typeof dropdownCategories];
+        const firstCategoryKey = Object.keys(categories)[0];
+        setActiveCategory(firstCategoryKey);
         setIsOpen(true);
       }
     }
   };
 
+  const handleCategoryClick = (categoryKey: string) => {
+    setActiveCategory(categoryKey);
+  };
+
   const renderPanelContent = () => {
-    const currentData =
-      navigationItems.find((item) => item.key === activeSection)?.data ||
-      placesData;
+    const currentTopNav = topNavigationItems.find(
+      (item) => item.key === activeTopNav
+    );
+    const categories =
+      dropdownCategories[activeTopNav as keyof typeof dropdownCategories];
+    const currentCategory =
+      categories[activeCategory as keyof typeof categories];
+    const rightContent =
+      rightSectionContent[activeTopNav as keyof typeof rightSectionContent][
+        activeCategory as keyof (typeof rightSectionContent)[typeof activeTopNav]
+      ];
 
     return (
       <div className="relative bg-white dark:bg-gray-900">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-6 py-10 lg:grid-cols-2 lg:px-8">
-          <div className="grid grid-cols-2 gap-x-6 sm:gap-x-8">
-            <div>
-              <h3 className="text-sm/6 font-medium text-gray-500 dark:text-gray-400 capitalize">
-                {activeSection}
-              </h3>
-              <div className="mt-6 flow-root">
-                <div className="-my-2">
-                  {currentData.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="flex gap-x-4 py-2 text-sm/6 font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                    >
-                      <item.icon
-                        aria-hidden="true"
-                        className="size-6 flex-none text-gray-400 dark:text-gray-500"
-                      />
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <div className="grid grid-cols-12 gap-8">
+            {/* Left Categories */}
+            <div className="col-span-3">
+              <div className="space-y-1">
+                {Object.entries(categories).map(([key, category]) => (
+                  <button
+                    key={key}
+                    onClick={() => handleCategoryClick(key)}
+                    className={`w-full flex items-center justify-between px-4 py-3 text-left rounded-lg transition-colors ${
+                      activeCategory === key
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span className="font-medium">{category.label}</span>
+                    <ChevronRightIcon
+                      className={`w-4 h-4 ${
+                        activeCategory === key ? 'text-white' : 'text-gray-400'
+                      }`}
+                    />
+                  </button>
+                ))}
               </div>
             </div>
-            <div>
-              <h3 className="text-sm/6 font-medium text-gray-500 dark:text-gray-400">
-                Recent Updates
-              </h3>
-              <div className="mt-6 flow-root">
-                <div className="-my-2">
-                  {recentPosts.slice(0, 3).map((post) => (
-                    <div key={post.id} className="py-2">
-                      <a
-                        href={post.href}
-                        className="block hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      >
-                        <p className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                          {post.title}
-                        </p>
-                        <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                          {post.date}
-                        </p>
-                      </a>
-                    </div>
-                  ))}
-                </div>
+
+            {/* Middle Subcategories */}
+            <div className="col-span-6">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                {currentCategory.subcategories.map((subcategory, index) => (
+                  <a
+                    key={index}
+                    href={subcategory.href}
+                    className="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                  >
+                    {subcategory.name}
+                  </a>
+                ))}
               </div>
             </div>
-          </div>
-          <div className="grid grid-cols-1 gap-10 sm:gap-8 lg:grid-cols-2">
-            <h3 className="sr-only">Recent posts</h3>
-            {recentPosts.map((post) => (
-              <article
-                key={post.id}
-                className="relative isolate flex max-w-2xl flex-col gap-x-8 gap-y-6 sm:flex-row sm:items-start lg:flex-col lg:items-stretch group"
-              >
-                <div className="relative flex-none">
-                  <img
-                    alt=""
-                    src={post.imageUrl}
-                    className="aspect-2/1 w-full rounded-lg bg-gray-100 object-cover sm:aspect-video sm:h-32 lg:h-auto dark:bg-gray-800 group-hover:scale-105 transition-transform duration-200"
-                  />
-                  <div className="absolute inset-0 rounded-lg ring-1 ring-gray-900/10 ring-inset dark:ring-white/10" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-x-4">
-                    <time
-                      dateTime={post.datetime}
-                      className="text-sm/6 text-gray-600 dark:text-gray-400"
-                    >
-                      {post.date}
-                    </time>
-                    <a
-                      href={post.category.href}
-                      className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors"
-                    >
-                      {post.category.title}
-                    </a>
+
+            {/* Right Section */}
+            <div className="col-span-3 border-l border-gray-200 pl-8">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
+                    <rightContent.icon className="w-4 h-4 text-white" />
                   </div>
-                  <h4 className="mt-2 text-sm/6 font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    <a href={post.href}>
-                      <span className="absolute inset-0" />
-                      {post.title}
-                    </a>
-                  </h4>
-                  <p className="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">
-                    {post.description}
-                  </p>
                 </div>
-              </article>
-            ))}
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {rightContent.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {rightContent.description}
+                  </p>
+                  <a
+                    href={rightContent.ctaHref}
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                  >
+                    {rightContent.ctaText}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -209,7 +364,7 @@ export default function Header({ nav }: HeaderComponentProps) {
   };
 
   return (
-    <Popover className="relative isolate z-50 shadow-sm">
+    <Popover className="sticky top-0 z-50 shadow-sm">
       <div className="bg-black dark:bg-gray-900">
         <div className="flex items-center mx-auto max-w-7xl px-6 lg:px-8">
           <svg
@@ -229,21 +384,21 @@ export default function Header({ nav }: HeaderComponentProps) {
             Enterprise Wireless Solutions
           </span>
           <nav className="flex">
-            {navigationItems.map((item) => (
+            {topNavigationItems.map((item) => (
               <button
                 key={item.key}
                 className={`inline-flex items-center py-5 px-2 gap-x-1 text-sm/6 font-semibold transition-all duration-200 ${
-                  isOpen && activeSection === item.key
+                  isOpen && activeTopNav === item.key
                     ? 'text-blue-600 dark:text-blue-400 bg-white'
                     : 'text-white hover:text-gray-900 hover:bg-white'
                 }`}
-                onClick={() => handleButtonClick(item.key)}
+                onClick={() => handleTopNavClick(item.key)}
               >
                 {item.label}
                 <ChevronDownIcon
                   aria-hidden="true"
                   className={`size-5 transition-transform duration-200 ${
-                    isOpen && activeSection === item.key ? 'rotate-180' : ''
+                    isOpen && activeTopNav === item.key ? 'rotate-180' : ''
                   }`}
                 />
               </button>
@@ -259,17 +414,23 @@ export default function Header({ nav }: HeaderComponentProps) {
         </div>
       </div>
 
-      {/* Conditional rendering for smooth animations */}
+      {/* Mega Menu Panel */}
       {isOpen && (
         <PopoverPanel
           static
-          className="absolute inset-x-0 top-16 bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300"
+          className="absolute inset-x-0 top-full bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300 shadow-lg border-gray-200"
         >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 top-1/2 bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:shadow-none dark:ring-white/10"
-          />
-          {renderPanelContent()}
+          <div className="relative">
+            {/* Close button */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <XMarkIcon className="w-5 h-5" />
+            </button>
+
+            {renderPanelContent()}
+          </div>
         </PopoverPanel>
       )}
     </Popover>

@@ -9,7 +9,6 @@ export default function Home(props: Props) {
   const { page, entryUrl } = props;
   const [getEntry, setEntry] = useState(page);
 
-  console.log('GET ENTRY', getEntry);
   async function fetchData() {
     try {
       const entryRes = await getPageRes(entryUrl);
