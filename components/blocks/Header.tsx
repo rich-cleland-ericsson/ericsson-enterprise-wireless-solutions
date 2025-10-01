@@ -13,6 +13,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { HeaderProps } from '@/typescript/layout';
 
 // Data for each navigation section
 const placesData = [
@@ -67,7 +68,11 @@ const recentPosts = [
   },
 ];
 
-export default function Header() {
+interface HeaderComponentProps {
+  nav?: HeaderProps;
+}
+
+export default function Header({ nav }: HeaderComponentProps) {
   const [activeSection, setActiveSection] = useState('places');
   const [isOpen, setIsOpen] = useState(false);
 
