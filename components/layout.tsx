@@ -1,5 +1,6 @@
 import React from 'react';
-import { HeaderProps, FooterProps, PageProps } from '../typescript/layout';
+import { HeaderProps, FooterProps, PageProps } from '@/typescript/layout';
+import Header from '@/components/blocks/Header';
 
 interface LayoutProps {
   header: HeaderProps;
@@ -24,36 +25,7 @@ const Layout: React.FC<LayoutProps> = ({
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-black sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              {header?.logo?.url && (
-                <img src={header.logo.url} alt="Logo" className="h-8 w-auto" />
-              )}
-            </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              {header?.navigation_menu?.categories.map(
-                (item: any, index: number) => (
-                  <a
-                    key={index}
-                    href={item.page_reference?.[0]?.url || '#'}
-                    className="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                )
-              )}
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
+      <Header nav={header} />
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
