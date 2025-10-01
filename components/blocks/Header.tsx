@@ -17,26 +17,60 @@ import {
 import { useState } from 'react';
 import { HeaderProps } from '@/typescript/layout';
 
+// Type definitions
+type TopNavKey = 'places' | 'products' | 'people' | 'resources';
+
+type Subcategory = {
+  name: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
+};
+
+type Category = {
+  label: string;
+  subcategories: Subcategory[];
+};
+
+type RightSectionContent = {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  ctaText: string;
+  ctaHref: string;
+};
+
+type DropdownCategories = {
+  [K in TopNavKey]: {
+    [key: string]: Category;
+  };
+};
+
+type RightSectionContents = {
+  [K in TopNavKey]: {
+    [key: string]: RightSectionContent;
+  };
+};
+
 // Data for each navigation section (original top nav)
-const placesData = [
+const placesData: Subcategory[] = [
   { name: 'Office Locations', href: '#', icon: GlobeAltIcon },
   { name: 'Global Presence', href: '#', icon: UsersIcon },
   { name: 'Regional Centers', href: '#', icon: ShieldCheckIcon },
 ];
 
-const productsData = [
+const productsData: Subcategory[] = [
   { name: 'Wireless Solutions', href: '#', icon: ShieldCheckIcon },
   { name: 'Network Equipment', href: '#', icon: GlobeAltIcon },
   { name: 'IoT Products', href: '#', icon: VideoCameraIcon },
 ];
 
-const peopleData = [
+const peopleData: Subcategory[] = [
   { name: 'Leadership Team', href: '#', icon: UsersIcon },
   { name: 'Employee Stories', href: '#', icon: UserGroupIcon },
   { name: 'Career Opportunities', href: '#', icon: BriefcaseIcon },
 ];
 
-const resourcesData = [
+const resourcesData: Subcategory[] = [
   { name: 'Documentation', href: '#', icon: BookOpenIcon },
   { name: 'Support Center', href: '#', icon: InformationCircleIcon },
   { name: 'Community Forum', href: '#', icon: UserGroupIcon },
@@ -44,7 +78,7 @@ const resourcesData = [
 ];
 
 // Different category data for each top nav item
-const dropdownCategories = {
+const dropdownCategories: DropdownCategories = {
   places: {
     industries: {
       label: 'Industries',
@@ -151,7 +185,7 @@ const dropdownCategories = {
 };
 
 // Right section content for each top nav and category combination
-const rightSectionContent = {
+const rightSectionContent: RightSectionContents = {
   places: {
     industries: {
       title: 'Let us help',
@@ -231,19 +265,19 @@ interface HeaderComponentProps {
 }
 
 export default function Header({ nav }: HeaderComponentProps) {
-  const [activeTopNav, setActiveTopNav] = useState('places');
-  const [activeCategory, setActiveCategory] = useState('industries');
+  const [activeTopNav, setActiveTopNav] = useState<TopNavKey>('places');
+  const [activeCategory, setActiveCategory] = useState<string>('industries');
   const [isOpen, setIsOpen] = useState(false);
 
   // Original top navigation items
   const topNavigationItems = [
-    { key: 'places', label: 'Places', data: placesData },
-    { key: 'products', label: 'Products', data: productsData },
-    { key: 'people', label: 'People', data: peopleData },
-    { key: 'resources', label: 'Resources', data: resourcesData },
+    { key: 'places' as const, label: 'Places', data: placesData },
+    { key: 'products' as const, label: 'Products', data: productsData },
+    { key: 'people' as const, label: 'People', data: peopleData },
+    { key: 'resources' as const, label: 'Resources', data: resourcesData },
   ];
 
-  const handleTopNavClick = (navKey: string) => {
+  const handleTopNavClick = (navKey: TopNavKey) => {
     if (isOpen && activeTopNav === navKey) {
       // Same button clicked - close
       setIsOpen(false);
@@ -254,8 +288,7 @@ export default function Header({ nav }: HeaderComponentProps) {
         setTimeout(() => {
           setActiveTopNav(navKey);
           // Reset to first category when switching top nav
-          const categories =
-            dropdownCategories[navKey as keyof typeof dropdownCategories];
+          const categories = dropdownCategories[navKey];
           const firstCategoryKey = Object.keys(categories)[0];
           setActiveCategory(firstCategoryKey);
           setIsOpen(true);
@@ -264,8 +297,7 @@ export default function Header({ nav }: HeaderComponentProps) {
         // Not open - just open with new content
         setActiveTopNav(navKey);
         // Reset to first category when opening
-        const categories =
-          dropdownCategories[navKey as keyof typeof dropdownCategories];
+        const categories = dropdownCategories[navKey];
         const firstCategoryKey = Object.keys(categories)[0];
         setActiveCategory(firstCategoryKey);
         setIsOpen(true);
@@ -278,17 +310,13 @@ export default function Header({ nav }: HeaderComponentProps) {
   };
 
   const renderPanelContent = () => {
-    const currentTopNav = topNavigationItems.find(
-      (item) => item.key === activeTopNav
-    );
-    const categories =
-      dropdownCategories[activeTopNav as keyof typeof dropdownCategories];
-    const currentCategory =
-      categories[activeCategory as keyof typeof categories];
-    const rightContent =
-      rightSectionContent[activeTopNav as keyof typeof rightSectionContent][
-        activeCategory as keyof (typeof rightSectionContent)[typeof activeTopNav]
-      ];
+    const categories = dropdownCategories[activeTopNav];
+    const currentCategory = categories[activeCategory];
+    const rightContent = rightSectionContent[activeTopNav][activeCategory];
+
+    if (!currentCategory || !rightContent) {
+      return null;
+    }
 
     return (
       <div className="relative bg-white dark:bg-gray-900">
@@ -418,7 +446,7 @@ export default function Header({ nav }: HeaderComponentProps) {
       {isOpen && (
         <PopoverPanel
           static
-          className="absolute inset-x-0 top-full bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300 shadow-lg border-gray-200"
+          className="absolute inset-x-0 top-full bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300 shadow-lg border-t border-gray-200"
         >
           <div className="relative">
             {/* Close button */}
