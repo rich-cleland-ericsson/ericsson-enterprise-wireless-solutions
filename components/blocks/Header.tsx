@@ -193,12 +193,15 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Ericsson On-Demand: Liberate your core. Free your business.',
-          description: 'A SaaS-based 5G core, managed by Ericsson and built on Google Cloud. Coming in 2025',
+          description:
+            'A SaaS-based 5G core, managed by Ericsson and built on Google Cloud. Coming in 2025',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: '5G changes everything, or nothing.',
           description: "It's up to your OSS/BSS. Sell. Deliver. Get paid.",
         },
@@ -208,14 +211,18 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Emergency Response Solutions',
-          description: 'Advanced wireless solutions for critical emergency response scenarios.',
+          description:
+            'Advanced wireless solutions for critical emergency response scenarios.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Asset Tracking Technology',
-          description: 'Real-time asset monitoring and management capabilities.',
+          description:
+            'Real-time asset monitoring and management capabilities.',
         },
       ],
     },
@@ -225,12 +232,15 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Wireless Network Solutions',
-          description: 'Comprehensive wireless infrastructure for modern businesses.',
+          description:
+            'Comprehensive wireless infrastructure for modern businesses.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'IoT Platform Integration',
           description: 'Seamless IoT device management and data analytics.',
         },
@@ -240,14 +250,18 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: '5G Network Technology',
-          description: 'Next-generation wireless connectivity for enterprise applications.',
+          description:
+            'Next-generation wireless connectivity for enterprise applications.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'WiFi 6 Solutions',
-          description: 'High-performance wireless networking for modern workplaces.',
+          description:
+            'High-performance wireless networking for modern workplaces.',
         },
       ],
     },
@@ -257,14 +271,18 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Meet Our Leadership Team',
-          description: 'Experienced leaders driving innovation in wireless technology.',
+          description:
+            'Experienced leaders driving innovation in wireless technology.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Engineering Excellence',
-          description: 'World-class engineering teams building the future of connectivity.',
+          description:
+            'World-class engineering teams building the future of connectivity.',
         },
       ],
     },
@@ -272,12 +290,15 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Join Our Team',
-          description: 'Exciting career opportunities in wireless technology and innovation.',
+          description:
+            'Exciting career opportunities in wireless technology and innovation.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Company Culture',
           description: 'A collaborative environment where innovation thrives.',
         },
@@ -289,12 +310,15 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'API Documentation',
-          description: 'Comprehensive guides for integrating with our wireless solutions.',
+          description:
+            'Comprehensive guides for integrating with our wireless solutions.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Developer Resources',
           description: 'Tools and resources for building on our platform.',
         },
@@ -304,12 +328,14 @@ const rightSectionContent: RightSectionContents = {
       title: 'FEATURED ITEMS',
       featuredItems: [
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: '24/7 Support',
           description: 'Round-the-clock technical support for all your needs.',
         },
         {
-          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          image:
+            'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
           title: 'Community Forum',
           description: 'Connect with other users and get expert advice.',
         },
@@ -434,10 +460,13 @@ export default function Header({ nav }: HeaderComponentProps) {
                     <XMarkIcon className="w-5 h-5" />
                   </button>
                 </div>
-                
+
                 <div className="space-y-4">
                   {rightContent.featuredItems.map((item, index) => (
-                    <div key={index} className="bg-white border border-gray-300 p-4">
+                    <div
+                      key={index}
+                      className="bg-white border border-gray-300 p-4"
+                    >
                       <div className="flex space-x-4">
                         <div>
                           <img
@@ -523,9 +552,7 @@ export default function Header({ nav }: HeaderComponentProps) {
           static
           className="absolute inset-x-0 top-full bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300 shadow-lg border-gray-200"
         >
-          <div className="relative">
-            {renderPanelContent()}
-          </div>
+          <div className="relative">{renderPanelContent()}</div>
         </PopoverPanel>
       )}
     </Popover>

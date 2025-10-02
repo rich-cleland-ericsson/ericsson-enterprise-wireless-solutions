@@ -25,7 +25,6 @@ function MyApp(props: Props) {
   const { Component, pageProps, header, navigation, footer, entries } = props;
   const { page, archivePost, blogPost } = pageProps;
 
-
   const metaData = (seo: any) => {
     const metaArr = [];
     for (const key in seo) {
