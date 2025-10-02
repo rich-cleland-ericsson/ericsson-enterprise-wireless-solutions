@@ -8,6 +8,7 @@ import {
   getFooterRes,
   getNavRes,
   getAllEntries,
+  getBlogPostRes,
 } from '../helper';
 import '../styles/globals.css';
 import 'nprogress/nprogress.css';
@@ -22,7 +23,8 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp(props: Props) {
   const { Component, pageProps, header, navigation, footer, entries } = props;
-  const { page, posts, archivePost, blogPost } = pageProps;
+  const { page, archivePost, blogPost } = pageProps;
+
 
   const metaData = (seo: any) => {
     const metaArr = [];
@@ -43,7 +45,7 @@ function MyApp(props: Props) {
     }
     return metaArr;
   };
-  const blogList: any = posts?.concat(archivePost);
+  const blogList: any = [];
   return (
     <div className={`${ericssonHilda.variable} font-ericsson`}>
       <Head>

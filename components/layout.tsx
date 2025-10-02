@@ -21,7 +21,6 @@ const Layout: React.FC<LayoutProps> = ({
   entries,
   children,
 }) => {
-  console.log('HEADER', header);
 
   return (
     <div className="min-h-screen flex flex-col">

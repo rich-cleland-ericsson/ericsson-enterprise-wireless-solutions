@@ -11,6 +11,7 @@ import {
   UsersIcon,
   VideoCameraIcon,
   MagnifyingGlassIcon,
+  ArrowRightIcon,
   ChevronRightIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline';
@@ -33,10 +34,11 @@ type Category = {
 
 type RightSectionContent = {
   title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  ctaText: string;
-  ctaHref: string;
+  featuredItems: {
+    image: string;
+    title: string;
+    description: string;
+  }[];
 };
 
 type DropdownCategories = {
@@ -188,74 +190,130 @@ const dropdownCategories: DropdownCategories = {
 const rightSectionContent: RightSectionContents = {
   places: {
     industries: {
-      title: 'Let us help',
-      description:
-        'Whether you have a product question or need technical support, our team is here to help you succeed.',
-      icon: PhoneIcon,
-      ctaText: 'Contact Support',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Ericsson On-Demand: Liberate your core. Free your business.',
+          description: 'A SaaS-based 5G core, managed by Ericsson and built on Google Cloud. Coming in 2025',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: '5G changes everything, or nothing.',
+          description: "It's up to your OSS/BSS. Sell. Deliver. Get paid.",
+        },
+      ],
     },
     useCases: {
-      title: 'Explore Use Cases',
-      description:
-        'Discover how our solutions are being used across different industries and applications.',
-      icon: VideoCameraIcon,
-      ctaText: 'View Case Studies',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Emergency Response Solutions',
+          description: 'Advanced wireless solutions for critical emergency response scenarios.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Asset Tracking Technology',
+          description: 'Real-time asset monitoring and management capabilities.',
+        },
+      ],
     },
   },
   products: {
     solutions: {
-      title: 'Explore Solutions',
-      description:
-        'Discover how our wireless solutions can transform your business operations and improve efficiency.',
-      icon: VideoCameraIcon,
-      ctaText: 'View Case Studies',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Wireless Network Solutions',
+          description: 'Comprehensive wireless infrastructure for modern businesses.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'IoT Platform Integration',
+          description: 'Seamless IoT device management and data analytics.',
+        },
+      ],
     },
     technologies: {
-      title: 'Learn Technologies',
-      description:
-        'Understand the technical capabilities and features of our wireless technology stack.',
-      icon: InformationCircleIcon,
-      ctaText: 'Read Documentation',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: '5G Network Technology',
+          description: 'Next-generation wireless connectivity for enterprise applications.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'WiFi 6 Solutions',
+          description: 'High-performance wireless networking for modern workplaces.',
+        },
+      ],
     },
   },
   people: {
     team: {
-      title: 'Meet Our Team',
-      description:
-        'Get to know the talented individuals who make our company successful.',
-      icon: UserGroupIcon,
-      ctaText: 'View Team',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Meet Our Leadership Team',
+          description: 'Experienced leaders driving innovation in wireless technology.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Engineering Excellence',
+          description: 'World-class engineering teams building the future of connectivity.',
+        },
+      ],
     },
     careers: {
-      title: 'Join Our Team',
-      description:
-        'Ready to make an impact? Explore career opportunities and learn about our company culture.',
-      icon: BriefcaseIcon,
-      ctaText: 'View Careers',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Join Our Team',
+          description: 'Exciting career opportunities in wireless technology and innovation.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Company Culture',
+          description: 'A collaborative environment where innovation thrives.',
+        },
+      ],
     },
   },
   resources: {
     documentation: {
-      title: 'Learn More',
-      description:
-        'Access our comprehensive resources to understand how our solutions can benefit your organization.',
-      icon: BookOpenIcon,
-      ctaText: 'Browse Resources',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'API Documentation',
+          description: 'Comprehensive guides for integrating with our wireless solutions.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Developer Resources',
+          description: 'Tools and resources for building on our platform.',
+        },
+      ],
     },
     support: {
-      title: 'Get Support',
-      description:
-        'Need help? Our support team is here to assist you with any questions or issues.',
-      icon: PhoneIcon,
-      ctaText: 'Contact Support',
-      ctaHref: '#',
+      title: 'FEATURED ITEMS',
+      featuredItems: [
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: '24/7 Support',
+          description: 'Round-the-clock technical support for all your needs.',
+        },
+        {
+          image: 'https://images.contentstack.io/v3/assets/blt6957a1cf484f88d0/bltbc3a8f6bfd93c84b/68700da7de59215a8d04f845/Helpdesk-white.svg',
+          title: 'Community Forum',
+          description: 'Connect with other users and get expert advice.',
+        },
+      ],
     },
   },
 };
@@ -320,23 +378,23 @@ export default function Header({ nav }: HeaderComponentProps) {
 
     return (
       <div className="relative bg-white dark:bg-gray-900">
-        <div className="mx-auto max-w-7xl px-6 py-8">
+        <div className="px-6 py-8">
           <div className="grid grid-cols-12 gap-8">
             {/* Left Categories */}
             <div className="col-span-3">
-              <div className="space-y-1">
+              <div>
                 {Object.entries(categories).map(([key, category]) => (
                   <button
                     key={key}
                     onClick={() => handleCategoryClick(key)}
-                    className={`w-full flex items-center justify-between px-4 py-3 text-left rounded-lg transition-colors ${
+                    className={`w-full flex items-center justify-between text-lg px-4 py-3 text-left transition-colors ${
                       activeCategory === key
                         ? 'bg-blue-600 text-white'
                         : 'text-gray-700 hover:bg-gray-100'
                     }`}
                   >
                     <span className="font-medium">{category.label}</span>
-                    <ChevronRightIcon
+                    <ArrowRightIcon
                       className={`w-4 h-4 ${
                         activeCategory === key ? 'text-white' : 'text-gray-400'
                       }`}
@@ -353,7 +411,7 @@ export default function Header({ nav }: HeaderComponentProps) {
                   <a
                     key={index}
                     href={subcategory.href}
-                    className="px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                    className="px-3 py-2 text-gray-700 hover:underline transition-colors"
                   >
                     {subcategory.name}
                   </a>
@@ -362,26 +420,43 @@ export default function Header({ nav }: HeaderComponentProps) {
             </div>
 
             {/* Right Section */}
-            <div className="col-span-3 border-l border-gray-200 pl-8">
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
-                    <rightContent.icon className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <div className="col-span-3 pl-8">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-gray-900 uppercase">
                     {rightContent.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {rightContent.description}
-                  </p>
-                  <a
-                    href={rightContent.ctaHref}
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-sm flex flex-row items-center text-gray-900 hover:text-gray-700 underline decoration-dashed"
                   >
-                    {rightContent.ctaText}
-                  </a>
+                    <span>Close</span>
+                    <XMarkIcon className="w-5 h-5" />
+                  </button>
+                </div>
+                
+                <div className="space-y-4">
+                  {rightContent.featuredItems.map((item, index) => (
+                    <div key={index} className="bg-white border border-gray-300 p-4">
+                      <div className="flex space-x-4">
+                        <div>
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="bg-black p-4 w-16 h-16 object-cover rounded"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-gray-900 mb-2">
+                            {item.title}
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -394,7 +469,7 @@ export default function Header({ nav }: HeaderComponentProps) {
   return (
     <Popover className="sticky top-0 z-50 shadow-sm">
       <div className="bg-black dark:bg-gray-900">
-        <div className="flex items-center mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex items-center px-6 lg:px-8">
           <svg
             x="0px"
             y="0px"
@@ -415,9 +490,9 @@ export default function Header({ nav }: HeaderComponentProps) {
             {topNavigationItems.map((item) => (
               <button
                 key={item.key}
-                className={`inline-flex items-center py-5 px-2 gap-x-1 text-sm/6 font-semibold transition-all duration-200 ${
+                className={`inline-flex items-center py-5 px-4 gap-x-1 font-thin transition-all duration-200 ${
                   isOpen && activeTopNav === item.key
-                    ? 'text-blue-600 dark:text-blue-400 bg-white'
+                    ? 'bg-white'
                     : 'text-white hover:text-gray-900 hover:bg-white'
                 }`}
                 onClick={() => handleTopNavClick(item.key)}
@@ -446,17 +521,9 @@ export default function Header({ nav }: HeaderComponentProps) {
       {isOpen && (
         <PopoverPanel
           static
-          className="absolute inset-x-0 top-full bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300 shadow-lg border-t border-gray-200"
+          className="absolute inset-x-0 top-full bg-white dark:bg-gray-900 animate-in slide-in-from-top-2 duration-300 shadow-lg border-gray-200"
         >
           <div className="relative">
-            {/* Close button */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <XMarkIcon className="w-5 h-5" />
-            </button>
-
             {renderPanelContent()}
           </div>
         </PopoverPanel>

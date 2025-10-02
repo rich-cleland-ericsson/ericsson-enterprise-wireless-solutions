@@ -7,7 +7,6 @@ export default function Blog(props: Props) {
   const { page, entryUrl } = props;
   const [getEntry, setEntry] = useState(page);
 
-  console.log('THINGS AND STUFF', getEntry);
   return getEntry ? (
     <div>We got content</div>
   ) : (
